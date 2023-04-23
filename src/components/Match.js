@@ -4,13 +4,25 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Match({ ocr, namesToItems, setNamesToItems }) {
+export default function Match({
+  ocr,
+  namesToItems,
+  setNamesToItems,
+  names,
+  setNames,
+}) {
   const [inputVal, setInputVal] = useState("");
-  const [names, setNames] = useState([]);
-  const [currName, setCurrName] = useState(null);
+  const [currName, setCurrName] = useState("");
 
   useEffect(() => {
     setNames(["John", "Mary"]);
+    setCurrName("John");
+
+    let itemNames = [];
+    for (let i = 0; i < ocr.length; i++) {
+      let lastSpaceIdx = items[i].lastIndexOf(" ");
+      itemNames.append(ocr[i].slice(0, lastSpaceIdx));
+    }
   }, []);
 
   function handleInputChange(event) {
@@ -22,12 +34,15 @@ export default function Match({ ocr, namesToItems, setNamesToItems }) {
     event.preventDefault();
     setNames((prev) => [...prev, inputVal]);
     setInputVal("");
+
+    if (currName == "") {
+      setCurrName(inputVal);
+    }
   }
 
   function handleNameClick(event) {
     const { name } = event.target;
     setCurrName(name);
-    console.log(event.clientX);
   }
 
   function handleItemClick(event, cName) {
@@ -68,10 +83,43 @@ export default function Match({ ocr, namesToItems, setNamesToItems }) {
 
       <div className="flex col-auto">
         <div>
+          {Object.keys(namesToItems).map((namesName) => (
+            <div>
+              <div>
+                <button
+                  className={`hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-4  ${
+                    currName == namesName ? "bg-green-500" : "bg-gray-500"
+                  }`}
+                  name={namesName}
+                  onClick={handleNameClick}
+                >
+                  {namesName}
+                </button>
+              </div>
+              <div>
+                {itemNames.map((item) => (
+                  <button
+                    className={`text-white font-bold py-2 px-4 rounded m-4 ${
+                      namesToItems[currName] != null &&
+                      namesToItems[currName].indexOf(item) > -1
+                        ? "bg-gray-500"
+                        : "bg-purple-500"
+                    } hover:bg-purple-700`}
+                    name={item}
+                    onClick={(event) => handleItemClick(event, currName)}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* <div>
           {names.map((namesName) => (
             <button
-              className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-4  ${
-                currName == namesName ? "bg-gray-500" : "bg-green-500"
+              className={`hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-4  ${
+                currName == namesName ? "bg-green-500" : "bg-gray-500"
               }`}
               name={namesName}
               onClick={handleNameClick}
@@ -95,7 +143,7 @@ export default function Match({ ocr, namesToItems, setNamesToItems }) {
               {item}
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -6,24 +6,23 @@ const inter = Inter({ subsets: ["latin"] });
 
 function getNameToItems() {
   return {
-    "Mark": ["Lorem", "Ipsum"],
-    "Jane": ["Dolor Sit", "Amet"],
-    "Doe": ["Consectetur", "Adipiscing Elit", "Sed Do"],
-    "John": ["Lorem", "Sed Do"]
-  }
-
+    Mark: ["Lorem", "Ipsum"],
+    Jane: ["Dolor Sit", "Amet"],
+    Doe: ["Consectetur", "Adipiscing Elit", "Sed Do"],
+    John: ["Lorem", "Sed Do"],
+  };
 }
 
 function getItemsToNumNames() {
   return {
-    "Lorem": 2,
-    "Ipsum": 1,
+    Lorem: 2,
+    Ipsum: 1,
     "Dolor Sit": 1,
-    "Amet": 1,
-    "Consectetur": 1,
+    Amet: 1,
+    Consectetur: 1,
     "Adipiscing Elit": 1,
-    "Sed Do": 2
-  }
+    "Sed Do": 2,
+  };
 }
 
 function getItemsToCost(items) {
@@ -48,14 +47,14 @@ function calculateNameToCost(itemsToCost, nameToItems, itemsToNumNames) {
 
     for (let item in items) {
       item = items[item];
-      cost += (itemsToCost[item] / itemsToNumNames[item]);
+      cost += itemsToCost[item] / itemsToNumNames[item];
     }
     nameToCost[name] = cost;
   }
   return nameToCost;
 }
 
-export default function Calculations({ ocr, namesToItems }) {
+export default function Calculations({ ocr, namesToItems, names }) {
   let itemsToCost = getItemsToCost([
     "Lorem 6.50",
     "Ipsum 7.50",

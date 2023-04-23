@@ -9,7 +9,8 @@ import Match from "../components/Match";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [ocr, setOcr] = useState([]);
+  const [ocr, setOcr] = useState({});
+  const [names, setNames] = useState([]);
   const [namesToItems, setNamesToItems] = useState({});
 
   useEffect(() => {
@@ -27,11 +28,13 @@ export default function Home() {
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
       <Upload ocr={ocr} setOcr={setOcr} />
-      {/* <Calculations ocr={ocr} namesToItems={namesToItems} /> */}
+      <Calculations ocr={ocr} namesToItems={namesToItems} names={names} />
       <Match
         ocr={ocr}
         namesToItems={namesToItems}
         setNamesToItems={setNamesToItems}
+        names={names}
+        setNames={setNames}
       />
     </main>
   );
