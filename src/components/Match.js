@@ -15,8 +15,8 @@ export default function Match({
   const [currName, setCurrName] = useState("");
 
   useEffect(() => {
-    setNames(["John", "Mary"]);
-    setCurrName("John");
+    // setNames(["John", "Mary"]);
+    // setCurrName("John");
 
     console.log("itemsToCost", Object.keys(itemsToCost));
   }, []);
