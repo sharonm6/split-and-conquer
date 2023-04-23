@@ -4,7 +4,11 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Upload({ setItemsToCost, setItemNames }) {
+export default function Upload({
+  setNamesToItems,
+  setItemsToCost,
+  setItemNames,
+}) {
   const [ocr, setOcr] = useState([]);
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
@@ -12,6 +16,7 @@ export default function Upload({ setItemsToCost, setItemNames }) {
   });
 
   useEffect(() => {
+    setNamesToItems({});
     let itemsCostNames = getItemsToCost(ocr);
     setItemsToCost(itemsCostNames[0]);
     setItemNames(itemsCostNames[1]);

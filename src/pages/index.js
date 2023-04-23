@@ -18,7 +18,11 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <Upload setItemsToCost={setItemsToCost} setItemNames={setItemNames} />
+      <Upload
+        setNamesToItems={setNamesToItems}
+        setItemsToCost={setItemsToCost}
+        setItemNames={setItemNames}
+      />
       <Calculations nameToItems={namesToItems} itemsToCost={itemsToCost} />
       <Match
         namesToItems={namesToItems}
