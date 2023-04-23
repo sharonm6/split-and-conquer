@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Upload() {
-  const [ocr, setOcr] = useState("");
+  const [ocr, setOcr] = useState([]);
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
     logger: (m) => {
@@ -20,8 +20,6 @@ export default function Upload() {
     const {
       data: { text },
     } = await worker.recognize(imageData);
-    console.log(text);
-  
     setOcr(text.split("\n"));
   };
 
