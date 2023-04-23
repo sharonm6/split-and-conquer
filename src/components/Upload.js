@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Upload(ocr, setOcr) {
+export default function Upload({ ocr, setOcr }) {
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
     logger: (m) => {},
@@ -52,7 +52,7 @@ export default function Upload(ocr, setOcr) {
       </div>
       <div className="display-flex">
         <img src={imageData} alt="" srcSet="" />
-        <p>{ocr}</p>
+        <p>{JSON.stringify(ocr)}</p>
       </div>
     </>
   );

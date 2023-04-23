@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 
 import Upload from "../components/Upload";
-import Calculations from "@/components/Calculations";
+// import Calculations from "@/components/Calculations";
 import Match from "../components/Match";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,15 +12,24 @@ export default function Home() {
   const [ocr, setOcr] = useState([]);
   const [namesToItems, setNamesToItems] = useState({});
 
+  useEffect(() => {
+    setOcr({
+      "bloody mary": 7.0,
+      "Mimosa Special": 8.0,
+      Coffee: 275,
+      Florentine: 12.0,
+      "French Toast": 13.0,
+    });
+  }, []);
+
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <Upload ocr={ocr} />
-      <Calculations ocr={ocr} namesToItems={namesToItems} />
+      <Upload ocr={ocr} setOcr={setOcr} />
+      {/* <Calculations ocr={ocr} namesToItems={namesToItems} /> */}
       <Match
         ocr={ocr}
-        setOcr={setOcr}
         namesToItems={namesToItems}
         setNamesToItems={setNamesToItems}
       />
