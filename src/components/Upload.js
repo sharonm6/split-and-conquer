@@ -9,7 +9,6 @@ export default function Upload() {
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
     logger: (m) => {
-      console.log(m);
     },
   });
 
@@ -21,7 +20,8 @@ export default function Upload() {
     const {
       data: { text },
     } = await worker.recognize(imageData);
-    console.log("TEXT]", text.split("\n"));
+    console.log(text);
+  
     setOcr(text.split("\n"));
   };
 
@@ -55,7 +55,7 @@ export default function Upload() {
         />
       </div>
       <div className="display-flex">
-        <img src={imageData} alt="" srcset="" />
+        <img src={imageData} alt="" srcSet="" />
         <p>{ocr}</p>
       </div>
     </>
