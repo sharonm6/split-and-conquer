@@ -31,12 +31,11 @@ export default function Home() {
       <Upload ocr={ocr} setOcr={setOcr} setItemsToCost={setItemsToCost} />
       <Calculations nameToItems={namesToItems} itemsToCost={itemsToCost} />
       <Match
-        ocr={ocr}
         namesToItems={namesToItems}
         setNamesToItems={setNamesToItems}
         names={names}
         setNames={setNames}
-        itemsToCost = {itemsToCost}
+        itemsToCost={itemsToCost}
       />
     </main>
   );

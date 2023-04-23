@@ -5,11 +5,11 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Match({
-  ocr,
   namesToItems,
   setNamesToItems,
   names,
   setNames,
+  itemsToCost,
 }) {
   const [inputVal, setInputVal] = useState("");
   const [currName, setCurrName] = useState("");
@@ -17,6 +17,8 @@ export default function Match({
   useEffect(() => {
     setNames(["John", "Mary"]);
     setCurrName("John");
+
+    console.log("itemsToCost", itemsToCost);
   }, []);
 
   function handleInputChange(event) {
@@ -90,9 +92,8 @@ export default function Match({
                   {namesName}
                 </button>
               </div>
-              {itemNames}
               <div>
-                {itemNames.map((item) => (
+                {Object.keys(itemsToCost).map((item) => (
                   <button
                     className={`text-white font-bold py-2 px-4 rounded m-4 ${
                       namesToItems[currName] != null &&
