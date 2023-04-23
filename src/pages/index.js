@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 
 import Upload from "../components/Upload";
-// import Calculations from "@/components/Calculations";
+import Calculations from "@/components/Calculations";
 import Match from "../components/Match";
 
 const inter = Inter({ subsets: ["latin"] });
