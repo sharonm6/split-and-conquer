@@ -4,14 +4,15 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Match({ namesToItems, setNamesToItems, names, setNames, itemNames }) {
+export default function Match({
+  namesToItems,
+  setNamesToItems,
+  names,
+  setNames,
+  itemNames,
+}) {
   const [inputVal, setInputVal] = useState("");
   const [currName, setCurrName] = useState("");
-
-  useEffect(() => {
-    // setNames(["John", "Mary"]);
-    // setCurrName("John");
-  }, []);
 
   function handleInputChange(event) {
     const { value } = event.target;
@@ -47,7 +48,7 @@ export default function Match({ namesToItems, setNamesToItems, names, setNames, 
     } else {
       setNamesToItems((prev) => ({
         ...prev,
-        [cName]: prev[cName].filter((item) => item !== name),
+        [cName]: prev[cName].filter((item) => item != name),
       }));
     }
     console.log(namesToItems);
