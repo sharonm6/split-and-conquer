@@ -44,6 +44,11 @@ export default function Match({ namesToItems, setNamesToItems, names, setNames, 
         ...prev,
         [cName]: prev[currName] == null ? [name] : [...prev[cName], name],
       }));
+    } else {
+      setNamesToItems((prev) => ({
+        ...prev,
+        [cName]: prev[cName].filter((item) => item !== name),
+      }));
     }
     console.log(namesToItems);
   }
@@ -94,11 +99,12 @@ export default function Match({ namesToItems, setNamesToItems, names, setNames, 
                         className={`text-white font-bold py-2 px-4 rounded m-4 ${
                           namesToItems[namesName] != null &&
                           namesToItems[namesName].indexOf(item) > -1
-                            ? "bg-purple-500"
-                            : "bg-gray-500"
-                        } hover:bg-purple-700`}
+                            ? "bg-purple-500 hover:disabled:bg-purple-500"
+                            : "bg-gray-500 hover:disabled:bg-gray-500"
+                        } hover:bg-purple-700 hover:disabled:bg-gray-500`}
                         name={item}
                         onClick={(event) => handleItemClick(event, currName)}
+                        disabled={namesName == currName ? false : "disabled"}
                       >
                         {item}
                       </button>
@@ -107,35 +113,6 @@ export default function Match({ namesToItems, setNamesToItems, names, setNames, 
               </div>
             ))}
         </div>
-        {/* <div>
-          {names.map((namesName) => (
-            <button
-              className={`hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-4  ${
-                currName == namesName ? "bg-green-500" : "bg-gray-500"
-              }`}
-              name={namesName}
-              onClick={handleNameClick}
-            >
-              {namesName}
-            </button>
-          ))}
-        </div>
-        <div>
-          {Object.keys(ocr).map((item) => (
-            <button
-              className={`text-white font-bold py-2 px-4 rounded m-4 ${
-                namesToItems[currName] != null &&
-                namesToItems[currName].indexOf(item) > -1
-                  ? "bg-gray-500"
-                  : "bg-purple-500"
-              } hover:bg-purple-700`}
-              name={item}
-              onClick={(event) => handleItemClick(event, currName)}
-            >
-              {item}
-            </button>
-          ))}
-        </div> */}
       </div>
     </>
   );
