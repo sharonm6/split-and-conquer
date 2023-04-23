@@ -55,7 +55,7 @@ export default function Calculations({nameToItems, itemsToCost}) {
         <ul>
           {Object.entries(nameToCost).map(([name, cost]) => (
             <li key={name}>
-              {name} pays {cost}.
+              {name} pays ${cost.toFixed(2)}
             </li>
           ))}
         </ul>
