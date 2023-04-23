@@ -12,22 +12,20 @@ export default function Home() {
   const [names, setNames] = useState([]);
   const [namesToItems, setNamesToItems] = useState({});
   const [itemsToCost, setItemsToCost] = useState({});
+  const [itemNames, setItemNames] = useState([]);
 
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <Upload
-        setItemsToCost={setItemsToCost}
-        setNamesToItems={setNamesToItems}
-      />
+      <Upload setItemsToCost={setItemsToCost} setItemNames={setItemNames} />
       <Calculations nameToItems={namesToItems} itemsToCost={itemsToCost} />
       <Match
         namesToItems={namesToItems}
         setNamesToItems={setNamesToItems}
         names={names}
         setNames={setNames}
-        itemsToCost={itemsToCost}
+        itemNames={itemNames}
       />
     </main>
   );

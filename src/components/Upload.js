@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Upload({ setItemsToCost, setNamesToItems }) {
+export default function Upload({ setItemsToCost, setItemNames }) {
   const [ocr, setOcr] = useState([]);
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
@@ -14,9 +14,7 @@ export default function Upload({ setItemsToCost, setNamesToItems }) {
   useEffect(() => {
     let itemsCostNames = getItemsToCost(ocr);
     setItemsToCost(itemsCostNames[0]);
-    setNamesToItems(itemsCostNames[1]);
-
-    console.log("ITEMS TO COST: ", itemsCostNames[0], itemsCostNames[1]);
+    setItemNames(itemsCostNames[1]);
   }, [ocr]);
 
   function getItemsToCost(items) {
@@ -26,9 +24,11 @@ export default function Upload({ setItemsToCost, setNamesToItems }) {
     for (let i = 0; i < items.length; i++) {
       let lastSpaceIdx = items[i].lastIndexOf(" ");
       let item = items[i].slice(0, lastSpaceIdx);
-      let cost = items[i].slice(lastSpaceIdx + 1);
-      itemstoCost[item] = parseFloat(cost);
-      itemNames.push(item);
+      if (item != "") {
+        let cost = items[i].slice(lastSpaceIdx + 1);
+        itemstoCost[item] = parseFloat(cost);
+        itemNames.push(item);
+      }
     }
 
     return [itemstoCost, itemNames];

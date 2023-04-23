@@ -4,21 +4,13 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Match({
-  namesToItems,
-  setNamesToItems,
-  names,
-  setNames,
-  itemsToCost,
-}) {
+export default function Match({ namesToItems, setNamesToItems, names, setNames, itemNames }) {
   const [inputVal, setInputVal] = useState("");
   const [currName, setCurrName] = useState("");
 
   useEffect(() => {
     // setNames(["John", "Mary"]);
     // setCurrName("John");
-
-    console.log("itemsToCost", Object.keys(itemsToCost));
   }, []);
 
   function handleInputChange(event) {
@@ -39,7 +31,7 @@ export default function Match({
   function handleNameClick(event) {
     const { name } = event.target;
     setCurrName(name);
-    console.log("itemsToCost", Object.keys(itemsToCost));
+    console.log("itemNames", Object.keys(itemNames));
   }
 
   function handleItemClick(event, cName) {
@@ -80,38 +72,40 @@ export default function Match({
 
       <div className="flex col-auto">
         <div>
-          {names.map((namesName) => (
-            <div>
+          {names &&
+            names.map((namesName) => (
               <div>
-                <button
-                  className={`hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-4  ${
-                    currName == namesName ? "bg-green-500" : "bg-gray-500"
-                  }`}
-                  name={namesName}
-                  onClick={handleNameClick}
-                >
-                  {namesName}
-                </button>
-              </div>
-              <div>
-                {Object.keys(itemsToCost).map((item) => (
+                <div>
                   <button
-                    id={`${namesName}-${item}`}
-                    className={`text-white font-bold py-2 px-4 rounded m-4 ${
-                      namesToItems[namesName] != null &&
-                      namesToItems[namesName].indexOf(item) > -1
-                        ? "bg-purple-500"
-                        : "bg-gray-500"
-                    } hover:bg-purple-700`}
-                    name={item}
-                    onClick={(event) => handleItemClick(event, currName)}
+                    className={`hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-4  ${
+                      currName == namesName ? "bg-green-500" : "bg-gray-500"
+                    }`}
+                    name={namesName}
+                    onClick={handleNameClick}
                   >
-                    {item}
+                    {namesName}
                   </button>
-                ))}
+                </div>
+                <div>
+                  {itemNames &&
+                    itemNames.map((item) => (
+                      <button
+                        id={`${namesName}-${item}`}
+                        className={`text-white font-bold py-2 px-4 rounded m-4 ${
+                          namesToItems[namesName] != null &&
+                          namesToItems[namesName].indexOf(item) > -1
+                            ? "bg-purple-500"
+                            : "bg-gray-500"
+                        } hover:bg-purple-700`}
+                        name={item}
+                        onClick={(event) => handleItemClick(event, currName)}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
         {/* <div>
           {names.map((namesName) => (
