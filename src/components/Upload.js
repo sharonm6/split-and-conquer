@@ -4,7 +4,20 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Upload({ ocr, setOcr }) {
+function getItemsToCost(items) {
+  let itemstoCost = {};
+
+  for (let i = 0; i < items.length; i++) {
+    let lastSpaceIdx = items[i].lastIndexOf(" ");
+    let item = items[i].slice(0, lastSpaceIdx);
+    let cost = items[i].slice(lastSpaceIdx + 1);
+    itemstoCost[item] = parseFloat(cost);
+  }
+
+  return itemstoCost;
+}
+
+export default function Upload({ ocr, setOcr, setItemsToCost}) {
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
     logger: (m) => {},
@@ -19,6 +32,8 @@ export default function Upload({ ocr, setOcr }) {
       data: { text },
     } = await worker.recognize(imageData);
     setOcr(text.split("\n"));
+    itemsToCost = getItemsToCost(ocr);
+    setItemsToCost(itemsToCost);
   };
 
   useEffect(() => {
@@ -32,7 +47,6 @@ export default function Upload({ ocr, setOcr }) {
 
     reader.onloadend = () => {
       const imageDataUri = reader.result;
-      console.log({ imageDataUri });
       setImageData(imageDataUri);
     };
     reader.readAsDataURL(file);
