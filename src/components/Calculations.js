@@ -55,34 +55,42 @@ function calculateNameToCost(itemsToCost, nameToItems, itemsToNumNames) {
   return nameToCost;
 }
 
-export default function Calculations() {
-    const [ocr, setOcr] = useState([]);
-    // setOcr(['Lorem 6.50', 'Ipsum 7.50', 'Dolor Sit 48.00', 'Amet 9.30', 'Consectetur 11.90', 'Adipiscing Elit 1.20', 'Sed Do 0.40', '']);
+export default function Calculations({ ocr, namesToItems }) {
+  let itemsToCost = getItemsToCost([
+    "Lorem 6.50",
+    "Ipsum 7.50",
+    "Dolor Sit 48.00",
+    "Amet 9.30",
+    "Consectetur 11.90",
+    "Adipiscing Elit 1.20",
+    "Sed Do 0.40",
+    "",
+  ]);
+  let nameToItems = getNameToItems();
+  let itemsToNumNames = getItemsToNumNames();
+  let nameToCost = calculateNameToCost(
+    itemsToCost,
+    nameToItems,
+    itemsToNumNames
+  );
 
-    let itemsToCost = getItemsToCost(['Lorem 6.50', 'Ipsum 7.50', 'Dolor Sit 48.00', 'Amet 9.30', 'Consectetur 11.90', 'Adipiscing Elit 1.20', 'Sed Do 0.40', '']);
-    let nameToItems = getNameToItems();
-    let itemsToNumNames = getItemsToNumNames();
-    let nameToCost = calculateNameToCost(itemsToCost, nameToItems, itemsToNumNames);
-
-    console.log("itemsToCost", itemsToCost);
-    console.log("nameToItems", nameToItems);
-    console.log("itemsToNumNames", itemsToNumNames);
-    console.log("nameToCost", nameToCost);
-    
+  console.log("itemsToCost", itemsToCost);
+  console.log("nameToItems", nameToItems);
+  console.log("itemsToNumNames", itemsToNumNames);
+  console.log("nameToCost", nameToCost);
 
   return (
     <>
       <div>
         <p>Results:</p>
-       
       </div>
       <div className="display-flex">
         <ul>
-            {Object.entries(nameToCost).map(([name, cost]) => (
+          {Object.entries(nameToCost).map(([name, cost]) => (
             <li key={name}>
-                {name} pays {cost}.
+              {name} pays {cost}.
             </li>
-            ))}
+          ))}
         </ul>
       </div>
     </>

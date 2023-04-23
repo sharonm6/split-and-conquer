@@ -4,8 +4,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Match() {
-  const [ocr, setOcr] = useState([]);
+export default function Match({ ocr, namesToItems, setNamesToItems }) {
   const [inputVal, setInputVal] = useState("");
   const [names, setNames] = useState([]);
   const [currItem, setCurrItem] = useState(null);

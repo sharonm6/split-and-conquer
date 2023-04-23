@@ -4,12 +4,10 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Upload() {
-  const [ocr, setOcr] = useState([]);
+export default function Upload(ocr, setOcr) {
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
-    logger: (m) => {
-    },
+    logger: (m) => {},
   });
 
   const convertImageToText = async () => {
