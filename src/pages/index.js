@@ -16,14 +16,18 @@ export default function Home() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center justify-between ${inter.className}`}
     >
+      <nav class="relative flex w-full flex-wrap items-center justify-between bg-neutral-900 py-2 text-neutral-200 shadow-lg lg:flex-wrap lg:justify-start lg:py-4">
+        <div class="flex w-full flex-wrap items-center justify-between px-3 text-lg font-bold">
+          Split and Conquer
+        </div>
+      </nav>
       <Upload
         setNamesToItems={setNamesToItems}
         setItemsToCost={setItemsToCost}
         setItemNames={setItemNames}
       />
-      <Calculations nameToItems={namesToItems} itemsToCost={itemsToCost} />
       <Match
         namesToItems={namesToItems}
         setNamesToItems={setNamesToItems}
@@ -31,6 +35,7 @@ export default function Home() {
         setNames={setNames}
         itemNames={itemNames}
       />
+      <Calculations nameToItems={namesToItems} itemsToCost={itemsToCost} />
     </main>
   );
 }

@@ -48,10 +48,10 @@ export default function Calculations({nameToItems, itemsToCost}) {
 
   return (
     <>
-      <div>
-        <p>Results:</p>
+      <div className="mt-4">
+        <p className="font-bold">Results:</p>
       </div>
-      <div className="display-flex">
+      <div className="display-flex pb-10">
         <ul>
           {Object.entries(nameToCost).map(([name, cost]) => (
             <li key={name}>

@@ -56,8 +56,8 @@ export default function Match({
 
   return (
     <>
-      <form onSubmit={(e) => addName(e)} className="flex flex-col gap-4">
-        Add name:
+      <form onSubmit={(e) => addName(e)} className="flex flex-col gap-4 mt-5">
+        <span className="text-center font-bold">Add name(s):</span>
         <input
           name="nameInput"
           type="text"
@@ -69,12 +69,6 @@ export default function Match({
           Submit
         </button>
       </form>
-      <div>
-        Names:
-        {names.map((name) => (
-          <p>{name}</p>
-        ))}
-      </div>
 
       <div className="flex col-auto">
         <div>
@@ -84,7 +78,7 @@ export default function Match({
                 <div>
                   <button
                     className={`hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-4  ${
-                      currName == namesName ? "bg-green-500" : "bg-gray-500"
+                      currName == namesName ? "bg-green-600" : "bg-green-400"
                     }`}
                     name={namesName}
                     onClick={handleNameClick}

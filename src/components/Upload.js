@@ -68,8 +68,8 @@ export default function Upload({
 
   return (
     <>
-      <div>
-        <p>Choose an Image</p>
+      <div className="text-center">
+        <p className="pt-5 pb-10 h-1 text-center font-bold">Choose an Image</p>
         <input
           type="file"
           name=""
@@ -78,9 +78,8 @@ export default function Upload({
           accept="image/*"
         />
       </div>
-      <div className="display-flex">
+      <div className="display-flex mb-1">
         <img src={imageData} alt="" srcSet="" />
-        <p>{JSON.stringify(ocr)}</p>
       </div>
     </>
   );
