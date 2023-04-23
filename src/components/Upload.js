@@ -32,7 +32,7 @@ export default function Upload({ ocr, setOcr, setItemsToCost}) {
       data: { text },
     } = await worker.recognize(imageData);
     setOcr(text.split("\n"));
-    itemsToCost = getItemsToCost(ocr);
+    let itemsToCost = getItemsToCost(ocr);
     setItemsToCost(itemsToCost);
   };
 
