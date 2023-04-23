@@ -17,12 +17,6 @@ export default function Match({
   useEffect(() => {
     setNames(["John", "Mary"]);
     setCurrName("John");
-
-    let itemNames = [];
-    for (let i = 0; i < ocr.length; i++) {
-      let lastSpaceIdx = items[i].lastIndexOf(" ");
-      itemNames.append(ocr[i].slice(0, lastSpaceIdx));
-    }
   }, []);
 
   function handleInputChange(event) {
@@ -83,7 +77,7 @@ export default function Match({
 
       <div className="flex col-auto">
         <div>
-          {Object.keys(namesToItems).map((namesName) => (
+          {names.map((namesName) => (
             <div>
               <div>
                 <button
@@ -96,14 +90,15 @@ export default function Match({
                   {namesName}
                 </button>
               </div>
+              {itemNames}
               <div>
                 {itemNames.map((item) => (
                   <button
                     className={`text-white font-bold py-2 px-4 rounded m-4 ${
                       namesToItems[currName] != null &&
                       namesToItems[currName].indexOf(item) > -1
-                        ? "bg-gray-500"
-                        : "bg-purple-500"
+                        ? "bg-purple-500"
+                        : "bg-gray-500"
                     } hover:bg-purple-700`}
                     name={item}
                     onClick={(event) => handleItemClick(event, currName)}
