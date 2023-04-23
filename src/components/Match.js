@@ -18,7 +18,7 @@ export default function Match({
     setNames(["John", "Mary"]);
     setCurrName("John");
 
-    console.log("itemsToCost", itemsToCost);
+    console.log("itemsToCost", Object.keys(itemsToCost));
   }, []);
 
   function handleInputChange(event) {
@@ -39,6 +39,7 @@ export default function Match({
   function handleNameClick(event) {
     const { name } = event.target;
     setCurrName(name);
+    console.log("itemsToCost", Object.keys(itemsToCost));
   }
 
   function handleItemClick(event, cName) {
@@ -95,9 +96,10 @@ export default function Match({
               <div>
                 {Object.keys(itemsToCost).map((item) => (
                   <button
+                    id={`${namesName}-${item}`}
                     className={`text-white font-bold py-2 px-4 rounded m-4 ${
-                      namesToItems[currName] != null &&
-                      namesToItems[currName].indexOf(item) > -1
+                      namesToItems[namesName] != null &&
+                      namesToItems[namesName].indexOf(item) > -1
                         ? "bg-purple-500"
                         : "bg-gray-500"
                     } hover:bg-purple-700`}

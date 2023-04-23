@@ -10,14 +10,17 @@ function getItemsToCost(items) {
   for (let i = 0; i < items.length; i++) {
     let lastSpaceIdx = items[i].lastIndexOf(" ");
     let item = items[i].slice(0, lastSpaceIdx);
-    let cost = items[i].slice(lastSpaceIdx + 1);
-    itemstoCost[item] = parseFloat(cost);
+    if (item != "") {
+      let cost = items[i].slice(lastSpaceIdx + 1);
+      itemstoCost[item] = parseFloat(cost);
+    }
   }
 
   return itemstoCost;
 }
 
-export default function Upload({ ocr, setOcr, setItemsToCost}) {
+export default function Upload({ setItemsToCost }) {
+  const [ocr, setOcr] = useState([]);
   const [imageData, setImageData] = useState(null);
   const worker = createWorker({
     logger: (m) => {},
