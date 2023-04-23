@@ -12,6 +12,7 @@ export default function Home() {
   const [ocr, setOcr] = useState({});
   const [names, setNames] = useState([]);
   const [namesToItems, setNamesToItems] = useState({});
+  const [itemsToCost, setItemsToCost] = useState({});
 
   useEffect(() => {
     setOcr({
@@ -27,14 +28,15 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <Upload ocr={ocr} setOcr={setOcr} />
-      <Calculations ocr={ocr} namesToItems={namesToItems} names={names} />
+      <Upload ocr={ocr} setOcr={setOcr} setItemsToCost={setItemsToCost} />
+      <Calculations nameToItems={namesToItems} itemsToCost={itemsToCost} />
       <Match
         ocr={ocr}
         namesToItems={namesToItems}
         setNamesToItems={setNamesToItems}
         names={names}
         setNames={setNames}
+        itemsToCost = {itemsToCost}
       />
     </main>
   );
